@@ -1,0 +1,678 @@
+1. Найти все комедии, выпущенные после 2000 года, которые понравились мужчинам (оценка не ниже 4.5). Для каждого фильма в этом списке вывести название, год выпуска и количество таких оценок.
+--------------------------------------------------
+SELECT movies.title, movies.year, COUNT(ratings.rating) AS count_ratings FROM movies, ratings, users WHERE (movies.genres LIKE '%%Comedy%%' AND movies.year>2000 AND movies.id = ratings.movie_id AND ratings.rating>=4.5 AND ratings.user_id=users.id AND users.gender = 'male') GROUP BY ratings.movie_id ORDER BY movies.year, movies.title;
+┌─────────────────────────────────────────────────────────────────────────────────────┬──────┬───────────────┐
+│                                        title                                        │ year │ count_ratings │
+├─────────────────────────────────────────────────────────────────────────────────────┼──────┼───────────────┤
+│ Amelie (Fabuleux destin d'Amélie Poulain, Le)                                       │ 2001 │ 7             │
+│ Bridget Jones's Diary                                                               │ 2001 │ 3             │
+│ Gosford Park                                                                        │ 2001 │ 4             │
+│ Kate & Leopold                                                                      │ 2001 │ 1             │
+│ Knight's Tale, A                                                                    │ 2001 │ 2             │
+│ Monsoon Wedding                                                                     │ 2001 │ 1             │
+│ Monsters, Inc.                                                                      │ 2001 │ 7             │
+│ Mummy Returns, The                                                                  │ 2001 │ 1             │
+│ My Wife is an Actress (Ma Femme est une Actrice)                                    │ 2001 │ 1             │
+│ Rat Race                                                                            │ 2001 │ 1             │
+│ Royal Tenenbaums, The                                                               │ 2001 │ 4             │
+│ Rush Hour 2                                                                         │ 2001 │ 1             │
+│ Shaolin Soccer (Siu lam juk kau)                                                    │ 2001 │ 1             │
+│ Shrek                                                                               │ 2001 │ 7             │
+│ Someone Like You                                                                    │ 2001 │ 1             │
+│ Zoolander                                                                           │ 2001 │ 1             │
+│ Adaptation                                                                          │ 2002 │ 3             │
+│ Bend It Like Beckham                                                                │ 2002 │ 1             │
+│ Chicago                                                                             │ 2002 │ 2             │
+│ Fubar                                                                               │ 2002 │ 1             │
+│ Ice Age                                                                             │ 2002 │ 2             │
+│ Punch-Drunk Love                                                                    │ 2002 │ 1             │
+│ Secretary                                                                           │ 2002 │ 2             │
+│ American Splendor                                                                   │ 2003 │ 2             │
+│ Bad Santa                                                                           │ 2003 │ 1             │
+│ Finding Nemo                                                                        │ 2003 │ 9             │
+│ Gozu (Gokudô kyôfu dai-gekijô: Gozu)                                                │ 2003 │ 1             │
+│ Holes                                                                               │ 2003 │ 1             │
+│ Johnny English                                                                      │ 2003 │ 1             │
+│ Lost in Translation                                                                 │ 2003 │ 5             │
+│ Love Actually                                                                       │ 2003 │ 4             │
+│ Mighty Wind, A                                                                      │ 2003 │ 2             │
+│ Old School                                                                          │ 2003 │ 1             │
+│ Pirates of the Caribbean: The Curse of the Black Pearl                              │ 2003 │ 2             │
+│ School of Rock                                                                      │ 2003 │ 1             │
+│ 13 Going on 30                                                                      │ 2004 │ 1             │
+│ Anchorman: The Legend of Ron Burgundy                                               │ 2004 │ 1             │
+│ Bridget Jones: The Edge of Reason                                                   │ 2004 │ 1             │
+│ EuroTrip                                                                            │ 2004 │ 2             │
+│ Garden State                                                                        │ 2004 │ 1             │
+│ Girl Next Door, The                                                                 │ 2004 │ 1             │
+│ Incredibles, The                                                                    │ 2004 │ 4             │
+│ Kung Fu Hustle (Gong fu)                                                            │ 2004 │ 1             │
+│ Life Aquatic with Steve Zissou, The                                                 │ 2004 │ 1             │
+│ Mean Girls                                                                          │ 2004 │ 2             │
+│ Napoleon Dynamite                                                                   │ 2004 │ 1             │
+│ Shaun of the Dead                                                                   │ 2004 │ 3             │
+│ Sideways                                                                            │ 2004 │ 2             │
+│ Super Size Me                                                                       │ 2004 │ 1             │
+│ Terminal, The                                                                       │ 2004 │ 1             │
+│ 40-Year-Old Virgin, The                                                             │ 2005 │ 2             │
+│ Family Stone, The                                                                   │ 2005 │ 1             │
+│ Ice Harvest, The                                                                    │ 2005 │ 1             │
+│ Lords of Dogtown                                                                    │ 2005 │ 1             │
+│ Madagascar                                                                          │ 2005 │ 1             │
+│ Wedding Crashers                                                                    │ 2005 │ 1             │
+│ Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan │ 2006 │ 2             │
+│ Cars                                                                                │ 2006 │ 1             │
+│ Clerks II                                                                           │ 2006 │ 1             │
+│ Click                                                                               │ 2006 │ 2             │
+│ Devil Wears Prada, The                                                              │ 2006 │ 1             │
+│ Jackass Number Two                                                                  │ 2006 │ 1             │
+│ Little Miss Sunshine                                                                │ 2006 │ 2             │
+│ Science of Sleep, The (La science des rêves)                                        │ 2006 │ 2             │
+│ Stranger than Fiction                                                               │ 2006 │ 1             │
+│ Charlie Bartlett                                                                    │ 2007 │ 1             │
+│ Hot Fuzz                                                                            │ 2007 │ 1             │
+│ Hot Rod                                                                             │ 2007 │ 1             │
+│ Jackass 2.5                                                                         │ 2007 │ 1             │
+│ Juno                                                                                │ 2007 │ 6             │
+│ Knocked Up                                                                          │ 2007 │ 1             │
+│ Pirates of the Caribbean: At World's End                                            │ 2007 │ 1             │
+│ Simpsons Movie, The                                                                 │ 2007 │ 1             │
+│ Superbad                                                                            │ 2007 │ 4             │
+│ Walk Hard: The Dewey Cox Story                                                      │ 2007 │ 1             │
+│ Be Kind Rewind                                                                      │ 2008 │ 1             │
+│ Forgetting Sarah Marshall                                                           │ 2008 │ 1             │
+│ In Bruges                                                                           │ 2008 │ 2             │
+│ Kung Fu Panda                                                                       │ 2008 │ 1             │
+│ Madagascar: Escape 2 Africa                                                         │ 2008 │ 1             │
+│ Nick and Norah's Infinite Playlist                                                  │ 2008 │ 1             │
+│ Pineapple Express                                                                   │ 2008 │ 3             │
+│ South Park: Imaginationland                                                         │ 2008 │ 1             │
+│ Yes Man                                                                             │ 2008 │ 2             │
+│ Zack and Miri Make a Porno                                                          │ 2008 │ 1             │
+│ (500) Days of Summer                                                                │ 2009 │ 1             │
+│ 17 Again                                                                            │ 2009 │ 1             │
+│ Brüno (Bruno)                                                                       │ 2009 │ 1             │
+│ Drag Me to Hell                                                                     │ 2009 │ 1             │
+│ Hangover, The                                                                       │ 2009 │ 1             │
+│ Serious Man, A                                                                      │ 2009 │ 1             │
+│ Zombieland                                                                          │ 2009 │ 4             │
+│ Despicable Me                                                                       │ 2010 │ 2             │
+│ Easy A                                                                              │ 2010 │ 1             │
+│ Jackass 3D                                                                          │ 2010 │ 1             │
+│ Kick-Ass                                                                            │ 2010 │ 1             │
+│ Scott Pilgrim vs. the World                                                         │ 2010 │ 2             │
+│ Submarine                                                                           │ 2010 │ 1             │
+│ Tangled                                                                             │ 2010 │ 1             │
+│ Toy Story 3                                                                         │ 2010 │ 3             │
+│ Attack the Block                                                                    │ 2011 │ 1             │
+│ Bridesmaids                                                                         │ 2011 │ 1             │
+│ Carnage                                                                             │ 2011 │ 1             │
+│ Crazy, Stupid, Love.                                                                │ 2011 │ 2             │
+│ Descendants, The                                                                    │ 2011 │ 2             │
+│ Horrible Bosses                                                                     │ 2011 │ 1             │
+│ Intouchables                                                                        │ 2011 │ 2             │
+│ Kung Fu Panda 2                                                                     │ 2011 │ 1             │
+│ Midnight in Paris                                                                   │ 2011 │ 2             │
+│ Puss in Boots                                                                       │ 2011 │ 1             │
+│ Rango                                                                               │ 2011 │ 1             │
+│ Sherlock Holmes: A Game of Shadows                                                  │ 2011 │ 2             │
+│ The Artist                                                                          │ 2011 │ 1             │
+│ Cabin in the Woods, The                                                             │ 2012 │ 1             │
+│ Madagascar 3: Europe's Most Wanted                                                  │ 2012 │ 1             │
+│ Mirror Mirror                                                                       │ 2012 │ 1             │
+│ Moonrise Kingdom                                                                    │ 2012 │ 2             │
+│ Paperman                                                                            │ 2012 │ 1             │
+│ Seeking a Friend for the End of the World                                           │ 2012 │ 1             │
+│ Silver Linings Playbook                                                             │ 2012 │ 1             │
+│ Wreck-It Ralph                                                                      │ 2012 │ 1             │
+│ Anchorman 2: The Legend Continues                                                   │ 2013 │ 1             │
+│ Despicable Me 2                                                                     │ 2013 │ 1             │
+│ Frozen                                                                              │ 2013 │ 2             │
+│ Kick-Ass 2                                                                          │ 2013 │ 1             │
+│ Secret Life of Walter Mitty, The                                                    │ 2013 │ 1             │
+│ This Is the End                                                                     │ 2013 │ 1             │
+│ Wolf of Wall Street, The                                                            │ 2013 │ 3             │
+│ Big Hero 6                                                                          │ 2014 │ 2             │
+│ Birdman: Or (The Unexpected Virtue of Ignorance)                                    │ 2014 │ 1             │
+│ Grand Budapest Hotel, The                                                           │ 2014 │ 1             │
+│ The Lego Movie                                                                      │ 2014 │ 1             │
+│ Focus                                                                               │ 2015 │ 1             │
+│ Inside Out                                                                          │ 2015 │ 3             │
+│ Kingsman: The Secret Service                                                        │ 2015 │ 1             │
+│ Minions                                                                             │ 2015 │ 1             │
+│ The DUFF                                                                            │ 2015 │ 1             │
+│ The Man from U.N.C.L.E.                                                             │ 2015 │ 1             │
+│ Deadpool                                                                            │ 2016 │ 2             │
+│ Hunt for the Wilderpeople                                                           │ 2016 │ 1             │
+│ La La Land                                                                          │ 2016 │ 1             │
+│ Sausage Party                                                                       │ 2016 │ 1             │
+│ Zootopia                                                                            │ 2016 │ 2             │
+│ Deadpool 2                                                                          │ 2018 │ 1             │
+└─────────────────────────────────────────────────────────────────────────────────────┴──────┴───────────────┘
+ 
+2. Провести анализ занятий (профессий) пользователей - вывести количество пользователей для каждого рода занятий. Найти самую распространенную и самую редкую профессию посетитетей сайта.
+--------------------------------------------------
+CREATE VIEW users_occupation AS SELECT users.occupation, COUNT(users.id) AS count_users FROM users GROUP BY users.occupation;
+SELECT occupation, count_users FROM users_occupation WHERE count_users = (SELECT MAX(count_users) FROM users_occupation);
+┌────────────┬─────────────┐
+│ occupation │ count_users │
+├────────────┼─────────────┤
+│ student    │ 196         │
+└────────────┴─────────────┘
+SELECT occupation, count_users FROM users_occupation WHERE count_users = (SELECT MIN(count_users) FROM users_occupation);
+┌────────────┬─────────────┐
+│ occupation │ count_users │
+├────────────┼─────────────┤
+│ doctor     │ 7           │
+│ homemaker  │ 7           │
+└────────────┴─────────────┘
+DROP VIEW IF EXISTS users_occupation;
+ 
+3. Найти все пары пользователей, оценивших один и тот же фильм. Устранить дубликаты, проверить отсутствие пар с самим собой. Для каждой пары должны быть указаны имена пользователей и название фильма, который они оценили.
+--------------------------------------------------
+SELECT c.name AS User1, d.name AS User2, movies.title FROM ratings b, ratings a INNER JOIN movies ON a.movie_id = movies.id INNER JOIN users c ON c.id=a.user_id INNER JOIN users d ON d.id=b.user_id WHERE a.movie_id=b.movie_id AND c.id<d.id ORDER BY movies.title, User1, User2 LIMIT 195;
+┌──────────────────────┬──────────────────────┬─────────────────────────────────────────────────┐
+│        User1         │        User2         │                      title                      │
+├──────────────────────┼──────────────────────┼─────────────────────────────────────────────────┤
+│ Mark Littel          │ Adam Cummings        │ 'burbs, The                                     │
+│ Mark Littel          │ Rosendo Keebler      │ 'burbs, The                                     │
+│ Rosendo Keebler      │ Adam Cummings        │ 'burbs, The                                     │
+│ Adrien O'Keefe       │ Fleta Greenfelder    │ (500) Days of Summer                            │
+│ Adrien O'Keefe       │ Lupe Dicki           │ (500) Days of Summer                            │
+│ Adrien O'Keefe       │ Paul Leffler         │ (500) Days of Summer                            │
+│ Adrien O'Keefe       │ Rory Rowe            │ (500) Days of Summer                            │
+│ Adrien O'Keefe       │ Vernon Sporer        │ (500) Days of Summer                            │
+│ Adrien O'Keefe       │ Victoria Jast        │ (500) Days of Summer                            │
+│ Fleta Greenfelder    │ Paul Leffler         │ (500) Days of Summer                            │
+│ Fleta Greenfelder    │ Vernon Sporer        │ (500) Days of Summer                            │
+│ Lupe Dicki           │ Fleta Greenfelder    │ (500) Days of Summer                            │
+│ Lupe Dicki           │ Paul Leffler         │ (500) Days of Summer                            │
+│ Lupe Dicki           │ Vernon Sporer        │ (500) Days of Summer                            │
+│ Paul Leffler         │ Vernon Sporer        │ (500) Days of Summer                            │
+│ Rory Rowe            │ Fleta Greenfelder    │ (500) Days of Summer                            │
+│ Rory Rowe            │ Lupe Dicki           │ (500) Days of Summer                            │
+│ Rory Rowe            │ Paul Leffler         │ (500) Days of Summer                            │
+│ Rory Rowe            │ Vernon Sporer        │ (500) Days of Summer                            │
+│ Victoria Jast        │ Fleta Greenfelder    │ (500) Days of Summer                            │
+│ Victoria Jast        │ Lupe Dicki           │ (500) Days of Summer                            │
+│ Victoria Jast        │ Paul Leffler         │ (500) Days of Summer                            │
+│ Victoria Jast        │ Rory Rowe            │ (500) Days of Summer                            │
+│ Victoria Jast        │ Vernon Sporer        │ (500) Days of Summer                            │
+│ Vito Cormier         │ Adrien O'Keefe       │ (500) Days of Summer                            │
+│ Vito Cormier         │ Fleta Greenfelder    │ (500) Days of Summer                            │
+│ Vito Cormier         │ Lupe Dicki           │ (500) Days of Summer                            │
+│ Vito Cormier         │ Paul Leffler         │ (500) Days of Summer                            │
+│ Vito Cormier         │ Rory Rowe            │ (500) Days of Summer                            │
+│ Vito Cormier         │ Vernon Sporer        │ (500) Days of Summer                            │
+│ Vito Cormier         │ Victoria Jast        │ (500) Days of Summer                            │
+│ Sim Stamm            │ Della Abshire        │ 10                                              │
+│ Anita Prosacco       │ Esmeralda Balistreri │ 10 Cloverfield Lane                             │
+│ Phoebe Murazik       │ Anita Prosacco       │ 10 Cloverfield Lane                             │
+│ Phoebe Murazik       │ Esmeralda Balistreri │ 10 Cloverfield Lane                             │
+│ Vito Cormier         │ Anita Prosacco       │ 10 Cloverfield Lane                             │
+│ Vito Cormier         │ Esmeralda Balistreri │ 10 Cloverfield Lane                             │
+│ Vito Cormier         │ Phoebe Murazik       │ 10 Cloverfield Lane                             │
+│ Adam Cummings        │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Adam Cummings        │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Adam Cummings        │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Adam Cummings        │ Susan Kuvalis        │ 10 Things I Hate About You                      │
+│ Adam Cummings        │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Adrien O'Keefe       │ Adam Cummings        │ 10 Things I Hate About You                      │
+│ Adrien O'Keefe       │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Adrien O'Keefe       │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Adrien O'Keefe       │ Maria Franecki       │ 10 Things I Hate About You                      │
+│ Adrien O'Keefe       │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Adrien O'Keefe       │ Susan Kuvalis        │ 10 Things I Hate About You                      │
+│ Adrien O'Keefe       │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Adrien O'Keefe       │ Victoria Jast        │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Adam Cummings        │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Adrien O'Keefe       │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Ellis Pouros         │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Maria Franecki       │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Susan Kuvalis        │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Amparo Schuppe       │ Victoria Jast        │ 10 Things I Hate About You                      │
+│ Carroll Reilly       │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Carroll Reilly       │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Adam Cummings        │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Adrien O'Keefe       │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Maria Franecki       │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Susan Kuvalis        │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Ellis Pouros         │ Victoria Jast        │ 10 Things I Hate About You                      │
+│ Lori Sanford         │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Lori Sanford         │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Lori Sanford         │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Maria Franecki       │ Adam Cummings        │ 10 Things I Hate About You                      │
+│ Maria Franecki       │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Maria Franecki       │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Maria Franecki       │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Maria Franecki       │ Susan Kuvalis        │ 10 Things I Hate About You                      │
+│ Maria Franecki       │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Maria Franecki       │ Victoria Jast        │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Adam Cummings        │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Adrien O'Keefe       │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Amparo Schuppe       │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Ellis Pouros         │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Maria Franecki       │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Susan Kuvalis        │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Micaela Bogan        │ Victoria Jast        │ 10 Things I Hate About You                      │
+│ Olga Quigley         │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Susan Kuvalis        │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Susan Kuvalis        │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Susan Kuvalis        │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Susan Kuvalis        │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Victoria Jast        │ Adam Cummings        │ 10 Things I Hate About You                      │
+│ Victoria Jast        │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Victoria Jast        │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Victoria Jast        │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Victoria Jast        │ Susan Kuvalis        │ 10 Things I Hate About You                      │
+│ Victoria Jast        │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Adam Cummings        │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Adrien O'Keefe       │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Amparo Schuppe       │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Carroll Reilly       │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Ellis Pouros         │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Lori Sanford         │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Maria Franecki       │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Micaela Bogan        │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Olga Quigley         │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Susan Kuvalis        │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Vernon Sporer        │ 10 Things I Hate About You                      │
+│ Vito Cormier         │ Victoria Jast        │ 10 Things I Hate About You                      │
+│ Al Nitzsche          │ Lupe Dicki           │ 10,000 BC                                       │
+│ Hazle Jakubowski     │ Al Nitzsche          │ 10,000 BC                                       │
+│ Hazle Jakubowski     │ Lupe Dicki           │ 10,000 BC                                       │
+│ Vito Cormier         │ Al Nitzsche          │ 10,000 BC                                       │
+│ Vito Cormier         │ Hazle Jakubowski     │ 10,000 BC                                       │
+│ Vito Cormier         │ Lupe Dicki           │ 10,000 BC                                       │
+│ Abel Stark           │ Amparo Schuppe       │ 101 Dalmatians                                  │
+│ Abel Stark           │ Ceasar Wolf          │ 101 Dalmatians                                  │
+│ Abel Stark           │ Lupe Dicki           │ 101 Dalmatians                                  │
+│ Abel Stark           │ Mark Littel          │ 101 Dalmatians                                  │
+│ Abel Stark           │ Rosendo Keebler      │ 101 Dalmatians                                  │
+│ Abel Stark           │ Sylvan Rodriguez     │ 101 Dalmatians                                  │
+│ Amparo Schuppe       │ Ceasar Wolf          │ 101 Dalmatians                                  │
+│ Amparo Schuppe       │ Lupe Dicki           │ 101 Dalmatians                                  │
+│ Amparo Schuppe       │ Mark Littel          │ 101 Dalmatians                                  │
+│ Amparo Schuppe       │ Rosendo Keebler      │ 101 Dalmatians                                  │
+│ Amparo Schuppe       │ Sylvan Rodriguez     │ 101 Dalmatians                                  │
+│ Ceasar Wolf          │ Lupe Dicki           │ 101 Dalmatians                                  │
+│ Mark Littel          │ Ceasar Wolf          │ 101 Dalmatians                                  │
+│ Mark Littel          │ Lupe Dicki           │ 101 Dalmatians                                  │
+│ Mark Littel          │ Rosendo Keebler      │ 101 Dalmatians                                  │
+│ Rosendo Keebler      │ Ceasar Wolf          │ 101 Dalmatians                                  │
+│ Rosendo Keebler      │ Lupe Dicki           │ 101 Dalmatians                                  │
+│ Sylvan Rodriguez     │ Ceasar Wolf          │ 101 Dalmatians                                  │
+│ Sylvan Rodriguez     │ Lupe Dicki           │ 101 Dalmatians                                  │
+│ Sylvan Rodriguez     │ Mark Littel          │ 101 Dalmatians                                  │
+│ Sylvan Rodriguez     │ Rosendo Keebler      │ 101 Dalmatians                                  │
+│ Vito Cormier         │ Abel Stark           │ 101 Dalmatians                                  │
+│ Vito Cormier         │ Amparo Schuppe       │ 101 Dalmatians                                  │
+│ Vito Cormier         │ Ceasar Wolf          │ 101 Dalmatians                                  │
+│ Vito Cormier         │ Lupe Dicki           │ 101 Dalmatians                                  │
+│ Vito Cormier         │ Mark Littel          │ 101 Dalmatians                                  │
+│ Vito Cormier         │ Rosendo Keebler      │ 101 Dalmatians                                  │
+│ Vito Cormier         │ Sylvan Rodriguez     │ 101 Dalmatians                                  │
+│ Al Nitzsche          │ Ebony Rogahn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Al Nitzsche          │ Jorge Ortiz          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Al Nitzsche          │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Amparo Schuppe       │ Al Nitzsche          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Amparo Schuppe       │ Ebony Rogahn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Amparo Schuppe       │ Jorge Ortiz          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Amparo Schuppe       │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Amparo Schuppe       │ Mark Littel          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Cecil Sawayn         │ Al Nitzsche          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Cecil Sawayn         │ Amparo Schuppe       │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Cecil Sawayn         │ Ebony Rogahn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Cecil Sawayn         │ Jorge Ortiz          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Cecil Sawayn         │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Cecil Sawayn         │ Mark Littel          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Ebony Rogahn         │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Francesco Runolfsson │ Al Nitzsche          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Francesco Runolfsson │ Amparo Schuppe       │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Francesco Runolfsson │ Cecil Sawayn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Francesco Runolfsson │ Ebony Rogahn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Francesco Runolfsson │ Jorge Ortiz          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Francesco Runolfsson │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Francesco Runolfsson │ Loyal Durgan         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Francesco Runolfsson │ Mark Littel          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Jorge Ortiz          │ Ebony Rogahn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Jorge Ortiz          │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Loyal Durgan         │ Al Nitzsche          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Loyal Durgan         │ Amparo Schuppe       │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Loyal Durgan         │ Cecil Sawayn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Loyal Durgan         │ Ebony Rogahn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Loyal Durgan         │ Jorge Ortiz          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Loyal Durgan         │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Loyal Durgan         │ Mark Littel          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Mark Littel          │ Al Nitzsche          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Mark Littel          │ Ebony Rogahn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Mark Littel          │ Jorge Ortiz          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Mark Littel          │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Al Nitzsche          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Amparo Schuppe       │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Cecil Sawayn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Ebony Rogahn         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Francesco Runolfsson │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Jorge Ortiz          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Karl Gutmann         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Loyal Durgan         │ 101 Dalmatians (One Hundred and One Dalmatians) │
+│ Sam Yost             │ Mark Littel          │ 101 Dalmatians (One Hundred and One Dalmatians) │
+└──────────────────────┴──────────────────────┴─────────────────────────────────────────────────┘
+ 
+4. Найти 10 самых свежих оценок от разных пользователей, вывести названия фильмов, имена пользователей, оценку, дату отзыва в формате ГГГГ-ММ-ДД.
+--------------------------------------------------
+CREATE VIEW latest_ratings AS SELECT ratings.movie_id, ratings.user_id, ratings.rating, MAX(ratings.timestamp) AS latest_date FROM ratings GROUP BY ratings.user_id ORDER BY ratings.timestamp DESC;
+SELECT movies.title, users.name, latest_ratings.rating, date(latest_ratings.latest_date, 'unixepoch') AS date FROM movies, users, latest_ratings WHERE latest_ratings.movie_id = movies.id AND users.id=latest_ratings.user_id LIMIT 10;
+┌────────────────────────────────────────────────────────────────────┬───────────────────┬────────┬────────────┐
+│                               title                                │       name        │ rating │    date    │
+├────────────────────────────────────────────────────────────────────┼───────────────────┼────────┼────────────┤
+│ The Nice Guys                                                      │ Nichole Bahringer │ 4.0    │ 2018-09-20 │
+│ Saw                                                                │ Martine Bergnaum  │ 5.0    │ 2018-09-19 │
+│ A Quiet Place                                                      │ Vito Cormier      │ 4.5    │ 2018-09-18 │
+│ Deadpool 2                                                         │ Fleta Greenfelder │ 4.0    │ 2018-09-18 │
+│ Days of Being Wild (A Fei jingjyuhn)                               │ Lupe Dicki        │ 4.5    │ 2018-09-09 │
+│ Doctor Who: The Runaway Bride                                      │ Anastasia Erdman  │ 4.5    │ 2018-08-22 │
+│ Beautiful Mind, A                                                  │ Elta Schoen       │ 5.0    │ 2018-08-21 │
+│ In the Mood For Love (Fa yeung nin wa)                             │ Asha Grady        │ 5.0    │ 2018-07-30 │
+│ Jeff Ross Roasts the Border                                        │ Maybelle Treutel  │ 4.0    │ 2018-06-28 │
+│ Good, the Bad and the Ugly, The (Buono, il brutto, il cattivo, Il) │ Caesar Spinka     │ 2.0    │ 2018-04-11 │
+└────────────────────────────────────────────────────────────────────┴───────────────────┴────────┴────────────┘
+DROP VIEW IF EXISTS latest_ratings;
+ 
+5. Вывести в одном списке все фильмы с максимальным средним рейтингом и все фильмы с минимальным средним рейтингом. Общий список отсортировать по году выпуска и названию фильма. В зависимости от рейтинга в колонке Рекомендуем для фильмов должно быть написано Да или Нет.
+--------------------------------------------------
+CREATE VIEW average_ratings AS SELECT movies.title AS Title, movies.year AS Year, average_rating FROM movies INNER JOIN (SELECT ratings.movie_id, AVG(ratings.rating) AS average_rating FROM ratings GROUP BY ratings.movie_id) ratings ON ratings.movie_id=movies.id;
+SELECT Title, Year, average_rating, CASE WHEN max_rating = average_rating then 'Yes' WHEN min_rating = average_rating THEN 'No' END 'Recommendation' FROM (SELECT *, MAX(average_rating) OVER() AS max_rating, MIN(average_rating) OVER() AS min_rating FROM average_ratings) WHERE average_rating = max_rating OR average_rating = min_rating ORDER BY Year, Title;
+┌─────────────────────────────────────────────────────────────────────────┬──────┬────────────────┬────────────────┐
+│                                  Title                                  │ Year │ average_rating │ Recommendation │
+├─────────────────────────────────────────────────────────────────────────┼──────┼────────────────┼────────────────┤
+│ Cosmos                                                                  │      │ 5.0            │ Yes            │
+│ All Quiet on the Western Front                                          │ 1930 │ 5.0            │ Yes            │
+│ Little Women                                                            │ 1933 │ 5.0            │ Yes            │
+│ Babes in Toyland                                                        │ 1934 │ 5.0            │ Yes            │
+│ General Died at Dawn, The                                               │ 1936 │ 0.5            │ No             │
+│ Awful Truth, The                                                        │ 1937 │ 5.0            │ Yes            │
+│ Shall We Dance                                                          │ 1937 │ 5.0            │ Yes            │
+│ Jezebel                                                                 │ 1938 │ 5.0            │ Yes            │
+│ His Girl Friday                                                         │ 1940 │ 5.0            │ Yes            │
+│ Rebecca                                                                 │ 1940 │ 5.0            │ Yes            │
+│ Jane Eyre                                                               │ 1944 │ 5.0            │ Yes            │
+│ Lifeboat                                                                │ 1944 │ 5.0            │ Yes            │
+│ Meet Me in St. Louis                                                    │ 1944 │ 5.0            │ Yes            │
+│ Best Years of Our Lives, The                                            │ 1946 │ 5.0            │ Yes            │
+│ Adam's Rib                                                              │ 1949 │ 5.0            │ Yes            │
+│ Lavender Hill Mob, The                                                  │ 1951 │ 5.0            │ Yes            │
+│ Titanic                                                                 │ 1953 │ 0.5            │ No             │
+│ Them!                                                                   │ 1954 │ 5.0            │ Yes            │
+│ Affair to Remember, An                                                  │ 1957 │ 5.0            │ Yes            │
+│ Funny Face                                                              │ 1957 │ 5.0            │ Yes            │
+│ Nights of Cabiria (Notti di Cabiria, Le)                                │ 1957 │ 5.0            │ Yes            │
+│ 7th Voyage of Sinbad, The                                               │ 1958 │ 5.0            │ Yes            │
+│ Gigi                                                                    │ 1958 │ 5.0            │ Yes            │
+│ Babes in Toyland                                                        │ 1961 │ 0.5            │ No             │
+│ Human Condition III, The (Ningen no joken III)                          │ 1961 │ 5.0            │ Yes            │
+│ Music Man, The                                                          │ 1962 │ 5.0            │ Yes            │
+│ Carabineers, The (Carabiniers, Les)                                     │ 1963 │ 0.5            │ No             │
+│ Zulu                                                                    │ 1964 │ 5.0            │ Yes            │
+│ King of Hearts                                                          │ 1966 │ 5.0            │ Yes            │
+│ Marat/Sade                                                              │ 1966 │ 5.0            │ Yes            │
+│ In the Heat of the Night                                                │ 1967 │ 5.0            │ Yes            │
+│ Omega Man, The                                                          │ 1971 │ 5.0            │ Yes            │
+│ They Call Me Trinity                                                    │ 1971 │ 5.0            │ Yes            │
+│ Villain                                                                 │ 1971 │ 5.0            │ Yes            │
+│ Last Tango in Paris (Ultimo tango a Parigi)                             │ 1972 │ 5.0            │ Yes            │
+│ Last Detail, The                                                        │ 1973 │ 5.0            │ Yes            │
+│ Phantom of the Paradise                                                 │ 1974 │ 5.0            │ Yes            │
+│ Taking of Pelham One Two Three, The                                     │ 1974 │ 5.0            │ Yes            │
+│ Woman Under the Influence, A                                            │ 1974 │ 5.0            │ Yes            │
+│ Swept Away (Travolti da un insolito destino nell'azzurro mare d'Agosto) │ 1975 │ 5.0            │ Yes            │
+│ Harlan County U.S.A.                                                    │ 1976 │ 5.0            │ Yes            │
+│ Connections                                                             │ 1978 │ 5.0            │ Yes            │
+│ De platte jungle                                                        │ 1978 │ 5.0            │ Yes            │
+│ Watership Down                                                          │ 1978 │ 5.0            │ Yes            │
+│ Seems Like Old Times                                                    │ 1980 │ 5.0            │ Yes            │
+│ Stunt Man, The                                                          │ 1980 │ 5.0            │ Yes            │
+│ Continental Divide                                                      │ 1981 │ 5.0            │ Yes            │
+│ Four Seasons, The                                                       │ 1981 │ 5.0            │ Yes            │
+│ Amityville II: The Possession                                           │ 1982 │ 0.5            │ No             │
+│ Deathtrap                                                               │ 1982 │ 5.0            │ Yes            │
+│ I, the Jury                                                             │ 1982 │ 5.0            │ Yes            │
+│ Richard Pryor Live on the Sunset Strip                                  │ 1982 │ 5.0            │ Yes            │
+│ King of Comedy, The                                                     │ 1983 │ 5.0            │ Yes            │
+│ Silkwood                                                                │ 1983 │ 5.0            │ Yes            │
+│ Once Upon a Time in America                                             │ 1984 │ 5.0            │ Yes            │
+│ American Flyers                                                         │ 1985 │ 5.0            │ Yes            │
+│ Come and See (Idi i smotri)                                             │ 1985 │ 5.0            │ Yes            │
+│ My Life as a Dog (Mitt liv som hund)                                    │ 1985 │ 5.0            │ Yes            │
+│ Ran                                                                     │ 1985 │ 5.0            │ Yes            │
+│ Tampopo                                                                 │ 1985 │ 5.0            │ Yes            │
+│ Trip to Bountiful, The                                                  │ 1985 │ 5.0            │ Yes            │
+│ Friday the 13th Part VI: Jason Lives                                    │ 1986 │ 5.0            │ Yes            │
+│ Mona Lisa                                                               │ 1986 │ 5.0            │ Yes            │
+│ Reform School Girls                                                     │ 1986 │ 5.0            │ Yes            │
+│ Transformers: The Movie                                                 │ 1986 │ 5.0            │ Yes            │
+│ True Stories                                                            │ 1986 │ 5.0            │ Yes            │
+│ Anne of Green Gables: The Sequel (a.k.a. Anne of Avonlea)               │ 1987 │ 5.0            │ Yes            │
+│ Hard Ticket to Hawaii                                                   │ 1987 │ 0.5            │ No             │
+│ Hollywood Shuffle                                                       │ 1987 │ 5.0            │ Yes            │
+│ House of Games                                                          │ 1987 │ 5.0            │ Yes            │
+│ Matewan                                                                 │ 1987 │ 5.0            │ Yes            │
+│ Nightmare on Elm Street 5: The Dream Child, A                           │ 1989 │ 0.5            │ No             │
+│ Amityville Curse, The                                                   │ 1990 │ 0.5            │ No             │
+│ King of New York                                                        │ 1990 │ 5.0            │ Yes            │
+│ Miller's Crossing                                                       │ 1990 │ 5.0            │ Yes            │
+│ Rosencrantz and Guildenstern Are Dead                                   │ 1990 │ 5.0            │ Yes            │
+│ Flirting                                                                │ 1991 │ 5.0            │ Yes            │
+│ Impromptu                                                               │ 1991 │ 5.0            │ Yes            │
+│ Into the Woods                                                          │ 1991 │ 5.0            │ Yes            │
+│ Loser                                                                   │ 1991 │ 0.5            │ No             │
+│ Amityville 1992: It's About Time                                        │ 1992 │ 0.5            │ No             │
+│ Dream of Light (a.k.a. Quince Tree Sun, The) (Sol del membrillo, El)    │ 1992 │ 5.0            │ Yes            │
+│ Husbands and Wives                                                      │ 1992 │ 5.0            │ Yes            │
+│ Midnight Clear, A                                                       │ 1992 │ 5.0            │ Yes            │
+│ Raising Cain                                                            │ 1992 │ 0.5            │ No             │
+│ River Runs Through It, A                                                │ 1992 │ 5.0            │ Yes            │
+│ Amityville: A New Generation                                            │ 1993 │ 0.5            │ No             │
+│ Remains of the Day, The                                                 │ 1993 │ 5.0            │ Yes            │
+│ 3 Ninjas Kick Back                                                      │ 1994 │ 0.5            │ No             │
+│ Barcelona                                                               │ 1994 │ 5.0            │ Yes            │
+│ Burnt by the Sun (Utomlyonnye solntsem)                                 │ 1994 │ 5.0            │ Yes            │
+│ 3 Ninjas Knuckle Up                                                     │ 1995 │ 0.5            │ No             │
+│ Incredibly True Adventure of Two Girls in Love, The                     │ 1995 │ 5.0            │ Yes            │
+│ Jeffrey                                                                 │ 1995 │ 5.0            │ Yes            │
+│ La Cérémonie                                                            │ 1995 │ 5.0            │ Yes            │
+│ New Jersey Drive                                                        │ 1995 │ 5.0            │ Yes            │
+│ Scarlet Letter, The                                                     │ 1995 │ 5.0            │ Yes            │
+│ Amityville: Dollhouse                                                   │ 1996 │ 0.5            │ No             │
+│ Bed of Roses                                                            │ 1996 │ 5.0            │ Yes            │
+│ Bloodsport 2 (a.k.a. Bloodsport II: The Next Kumite)                    │ 1996 │ 5.0            │ Yes            │
+│ Carpool                                                                 │ 1996 │ 0.5            │ No             │
+│ Citizen Ruth                                                            │ 1996 │ 5.0            │ Yes            │
+│ Hands on a Hard Body                                                    │ 1996 │ 5.0            │ Yes            │
+│ Perfect Candidate, A                                                    │ 1996 │ 5.0            │ Yes            │
+│ Promise, The (La promesse)                                              │ 1996 │ 5.0            │ Yes            │
+│ Secrets & Lies                                                          │ 1996 │ 5.0            │ Yes            │
+│ Summer's Tale, A (Conte d'été)                                          │ 1996 │ 5.0            │ Yes            │
+│ When the Cat's Away (Chacun cherche son chat)                           │ 1996 │ 5.0            │ Yes            │
+│ 'Til There Was You                                                      │ 1997 │ 5.0            │ Yes            │
+│ Beautician and the Beast, The                                           │ 1997 │ 0.5            │ No             │
+│ Happy Together (a.k.a. Buenos Aires Affair) (Chun gwong cha sit)        │ 1997 │ 5.0            │ Yes            │
+│ Red Corner                                                              │ 1997 │ 5.0            │ Yes            │
+│ Wings of the Dove, The                                                  │ 1997 │ 5.0            │ Yes            │
+│ Babylon 5: In the Beginning                                             │ 1998 │ 0.5            │ No             │
+│ Cruise, The                                                             │ 1998 │ 5.0            │ Yes            │
+│ Dangerous Beauty                                                        │ 1998 │ 5.0            │ Yes            │
+│ Dreamlife of Angels, The (Vie rêvée des anges, La)                      │ 1998 │ 5.0            │ Yes            │
+│ Happiness                                                               │ 1998 │ 5.0            │ Yes            │
+│ Opposite of Sex, The                                                    │ 1998 │ 5.0            │ Yes            │
+│ Beautiful People                                                        │ 1999 │ 5.0            │ Yes            │
+│ Girl on the Bridge, The (Fille sur le pont, La)                         │ 1999 │ 5.0            │ Yes            │
+│ Limey, The                                                              │ 1999 │ 5.0            │ Yes            │
+│ On the Ropes                                                            │ 1999 │ 5.0            │ Yes            │
+│ Teaching Mrs. Tingle                                                    │ 1999 │ 0.5            │ No             │
+│ Titus                                                                   │ 1999 │ 5.0            │ Yes            │
+│ Bossa Nova                                                              │ 2000 │ 5.0            │ Yes            │
+│ Bounce                                                                  │ 2000 │ 0.5            │ No             │
+│ Center Stage                                                            │ 2000 │ 0.5            │ No             │
+│ FLCL                                                                    │ 2000 │ 5.0            │ Yes            │
+│ In the Mood For Love (Fa yeung nin wa)                                  │ 2000 │ 5.0            │ Yes            │
+│ Nine Lives of Tomas Katz, The                                           │ 2000 │ 5.0            │ Yes            │
+│ Psycho Beach Party                                                      │ 2000 │ 0.5            │ No             │
+│ Yi Yi                                                                   │ 2000 │ 5.0            │ Yes            │
+│ You Can Count on Me                                                     │ 2000 │ 5.0            │ Yes            │
+│ Anniversary Party, The                                                  │ 2001 │ 5.0            │ Yes            │
+│ Baby Boy                                                                │ 2001 │ 0.5            │ No             │
+│ Center of the World, The                                                │ 2001 │ 5.0            │ Yes            │
+│ Corky Romano                                                            │ 2001 │ 0.5            │ No             │
+│ Lantana                                                                 │ 2001 │ 5.0            │ Yes            │
+│ My Wife is an Actress (Ma Femme est une Actrice)                        │ 2001 │ 5.0            │ Yes            │
+│ The Blue Planet                                                         │ 2001 │ 5.0            │ Yes            │
+│ Darkness                                                                │ 2002 │ 0.5            │ No             │
+│ Garage Days                                                             │ 2002 │ 0.5            │ No             │
+│ Maid in Manhattan                                                       │ 2002 │ 0.5            │ No             │
+│ Roger Dodger                                                            │ 2002 │ 5.0            │ Yes            │
+│ Rules of Attraction, The                                                │ 2002 │ 5.0            │ Yes            │
+│ Simone (S1m0ne)                                                         │ 2002 │ 0.5            │ No             │
+│ Swimfan                                                                 │ 2002 │ 0.5            │ No             │
+│ White Oleander                                                          │ 2002 │ 0.5            │ No             │
+│ Bulletproof Monk                                                        │ 2003 │ 0.5            │ No             │
+│ Down with Love                                                          │ 2003 │ 0.5            │ No             │
+│ Just Married                                                            │ 2003 │ 0.5            │ No             │
+│ Nasu: Summer in Andalusia                                               │ 2003 │ 5.0            │ Yes            │
+│ Radio                                                                   │ 2003 │ 5.0            │ Yes            │
+│ Saw                                                                     │ 2003 │ 5.0            │ Yes            │
+│ 'Salem's Lot                                                            │ 2004 │ 5.0            │ Yes            │
+│ Big Bounce, The                                                         │ 2004 │ 0.5            │ No             │
+│ Mysterious Skin                                                         │ 2004 │ 0.5            │ No             │
+│ Voices from the List                                                    │ 2004 │ 5.0            │ Yes            │
+│ You Got Served                                                          │ 2004 │ 0.5            │ No             │
+│ Alone in the Dark                                                       │ 2005 │ 0.5            │ No             │
+│ Are We There Yet?                                                       │ 2005 │ 0.5            │ No             │
+│ Conversations with Other Women                                          │ 2005 │ 5.0            │ Yes            │
+│ Match Point                                                             │ 2005 │ 5.0            │ Yes            │
+│ Must Love Dogs                                                          │ 2005 │ 0.5            │ No             │
+│ No Direction Home: Bob Dylan                                            │ 2005 │ 5.0            │ Yes            │
+│ Reefer Madness: The Movie Musical                                       │ 2005 │ 5.0            │ Yes            │
+│ Happy Feet                                                              │ 2006 │ 0.5            │ No             │
+│ Let's Go to Prison                                                      │ 2006 │ 0.5            │ No             │
+│ My Super Ex-Girlfriend                                                  │ 2006 │ 0.5            │ No             │
+│ Planet Earth                                                            │ 2006 │ 5.0            │ Yes            │
+│ Battlestar Galactica: Razor                                             │ 2007 │ 5.0            │ Yes            │
+│ Brothers Solomon, The                                                   │ 2007 │ 0.5            │ No             │
+│ Class, The (Klass)                                                      │ 2007 │ 5.0            │ Yes            │
+│ Comebacks, The                                                          │ 2007 │ 0.5            │ No             │
+│ Doctor Who: Voyage Of The Damned                                        │ 2007 │ 5.0            │ Yes            │
+│ Man from Earth, The                                                     │ 2007 │ 5.0            │ Yes            │
+│ Reign Over Me                                                           │ 2007 │ 5.0            │ Yes            │
+│ Son of Rambow                                                           │ 2007 │ 5.0            │ Yes            │
+│ Che: Part One                                                           │ 2008 │ 5.0            │ Yes            │
+│ Che: Part Two                                                           │ 2008 │ 5.0            │ Yes            │
+│ Fool's Gold                                                             │ 2008 │ 0.5            │ No             │
+│ Max Manus                                                               │ 2008 │ 5.0            │ Yes            │
+│ Sex and the City                                                        │ 2008 │ 0.5            │ No             │
+│ Superhero Movie                                                         │ 2008 │ 0.5            │ No             │
+│ Black Dynamite                                                          │ 2009 │ 5.0            │ Yes            │
+│ Crazy Heart                                                             │ 2009 │ 5.0            │ Yes            │
+│ Enter the Void                                                          │ 2009 │ 5.0            │ Yes            │
+│ Girl Who Played with Fire, The (Flickan som lekte med elden)            │ 2009 │ 5.0            │ Yes            │
+│ I Love You Phillip Morris                                               │ 2009 │ 0.5            │ No             │
+│ Miss March                                                              │ 2009 │ 0.5            │ No             │
+│ The Butterfly Effect 3: Revelations                                     │ 2009 │ 0.5            │ No             │
+│ All Good Things                                                         │ 2010 │ 5.0            │ Yes            │
+│ Leap Year                                                               │ 2010 │ 0.5            │ No             │
+│ Life as We Know It                                                      │ 2010 │ 0.5            │ No             │
+│ Little Fockers                                                          │ 2010 │ 0.5            │ No             │
+│ Wolfman, The                                                            │ 2010 │ 0.5            │ No             │
+│ Conan the Barbarian                                                     │ 2011 │ 0.5            │ No             │
+│ Doctor Who: The Doctor, the Widow and the Wardrobe                      │ 2011 │ 5.0            │ Yes            │
+│ Pearl Jam Twenty                                                        │ 2011 │ 0.5            │ No             │
+│ Skin I Live In, The (La piel que habito)                                │ 2011 │ 0.5            │ No             │
+│ Zeitgeist: Moving Forward                                               │ 2011 │ 5.0            │ Yes            │
+│ Paperman                                                                │ 2012 │ 5.0            │ Yes            │
+│ Bad Words                                                               │ 2013 │ 0.5            │ No             │
+│ Before Midnight                                                         │ 2013 │ 5.0            │ Yes            │
+│ Doctor Who: The Time of the Doctor                                      │ 2013 │ 5.0            │ Yes            │
+│ Heat, The                                                               │ 2013 │ 5.0            │ Yes            │
+│ Machete Kills (Machete 2)                                               │ 2013 │ 5.0            │ Yes            │
+│ Particle Fever                                                          │ 2013 │ 5.0            │ Yes            │
+│ What If                                                                 │ 2013 │ 0.5            │ No             │
+│ Hercules                                                                │ 2014 │ 0.5            │ No             │
+│ Purge: Anarchy, The                                                     │ 2014 │ 5.0            │ Yes            │
+│ Watermark                                                               │ 2014 │ 5.0            │ Yes            │
+│ Wild                                                                    │ 2014 │ 0.5            │ No             │
+│ Aloha                                                                   │ 2015 │ 0.5            │ No             │
+│ Battle For Sevastopol                                                   │ 2015 │ 5.0            │ Yes            │
+│ Bitter Lake                                                             │ 2015 │ 5.0            │ Yes            │
+│ Joe Dirt 2: Beautiful Loser                                             │ 2015 │ 0.5            │ No             │
+│ Paper Towns                                                             │ 2015 │ 0.5            │ No             │
+│ Sisters                                                                 │ 2015 │ 0.5            │ No             │
+│ Trainwreck                                                              │ 2015 │ 0.5            │ No             │
+│ Inferno                                                                 │ 2016 │ 0.5            │ No             │
+│ SORI: Voice from the Heart                                              │ 2016 │ 5.0            │ Yes            │
+│ The Handmaiden                                                          │ 2016 │ 0.5            │ No             │
+│ American Made                                                           │ 2017 │ 5.0            │ Yes            │
+│ Blue Planet II                                                          │ 2017 │ 5.0            │ Yes            │
+└─────────────────────────────────────────────────────────────────────────┴──────┴────────────────┴────────────────┘
+DROP VIEW IF EXISTS average_ratings;
+ 
+6. Вычислить количество оценок и среднюю оценку, которую дали фильмам пользователи-женщины в период с 2010 по 2012 год.
+--------------------------------------------------
+SELECT COUNT(ratings.id) AS count_ratings, AVG(ratings.rating) AS average_rating FROM ratings, users WHERE ratings.user_id = users.id AND users.gender = 'female' AND (date(ratings.timestamp,'unixepoch') LIKE '2010%%' OR date(ratings.timestamp,'unixepoch') LIKE '2011%%' OR date(ratings.timestamp,'unixepoch') LIKE '2012%%');
+┌───────────────┬──────────────────┐
+│ count_ratings │  average_rating  │
+├───────────────┼──────────────────┤
+│ 706           │ 3.81515580736544 │
+└───────────────┴──────────────────┘
+ 
+7. Составить список фильмов с указанием их средней оценки и места в рейтинге по средней оценке. Полученный список отсортировать по году выпуска и названиям фильмов. В списке оставить первые 20 записей.
+--------------------------------------------------
+CREATE VIEW movies_ordered_by_rating AS SELECT movies.title AS Title, movies.year AS Year, Average_rating FROM movies INNER JOIN (SELECT ratings.movie_id, AVG(ratings.rating) AS Average_rating FROM ratings GROUP BY ratings.movie_id) ratings ON ratings.movie_id = movies.id;
+SELECT Title, Year, Average_rating, Place FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY Average_rating DESC) AS Place FROM movies_ordered_by_rating) ORDER BY Year, Title LIMIT 20;
+┌───────────────────────────────────────────────────────────────┬──────┬────────────────┬───────┐
+│                             Title                             │ Year │ Average_rating │ Place │
+├───────────────────────────────────────────────────────────────┼──────┼────────────────┼───────┤
+│ Cosmos                                                        │      │ 5.0            │ 155   │
+│ Nocturnal Animals                                             │      │ 3.0            │ 3418  │
+│ Ready Player One                                              │      │ 4.5            │ 390   │
+│ Trip to the Moon, A (Voyage dans la lune, Le)                 │ 1902 │ 3.0            │ 3271  │
+│ Snow White                                                    │ 1916 │ 3.5            │ 2251  │
+│ Cabinet of Dr. Caligari, The (Cabinet des Dr. Caligari., Das) │ 1920 │ 3.75           │ 1553  │
+│ Nosferatu (Nosferatu, eine Symphonie des Grauens)             │ 1922 │ 4.5            │ 213   │
+│ Battleship Potemkin                                           │ 1925 │ 4.5            │ 256   │
+│ By the Law                                                    │ 1926 │ 3.5            │ 2347  │
+│ Faust                                                         │ 1926 │ 4.0            │ 919   │
+│ Secrets of a Soul (Geheimnisse einer Seele)                   │ 1926 │ 4.5            │ 329   │
+│ Metropolis                                                    │ 1927 │ 4.0            │ 786   │
+│ Ring, The                                                     │ 1927 │ 1.0            │ 4526  │
+│ Circus, The                                                   │ 1928 │ 3.5            │ 1985  │
+│ Passion of Joan of Arc, The (Passion de Jeanne d'Arc, La)     │ 1928 │ 4.0            │ 981   │
+│ Steamboat Willie                                              │ 1928 │ 1.0            │ 4525  │
+│ All Quiet on the Western Front                                │ 1930 │ 5.0            │ 32    │
+│ City Lights                                                   │ 1931 │ 3.75           │ 1537  │
+│ Dracula                                                       │ 1931 │ 3.0            │ 3044  │
+│ Frankenstein                                                  │ 1931 │ 4.75           │ 174   │
+└───────────────────────────────────────────────────────────────┴──────┴────────────────┴───────┘
+DROP VIEW IF EXISTS movies_ordered_by_rating;
+ 
+8. Определить самый распространенный жанр фильма и количество фильмов в этом жанре.
+--------------------------------------------------
+CREATE VIEW the_most_widespread_genres AS WITH genres_movies(id, genre, substring) AS (SELECT id, NULL, genres FROM movies UNION ALL SELECT id, CASE WHEN instr(substring,'|') = 0 THEN substring ELSE substr(substring, 1, instr(substring,'|')-1) END, CASE WHEN instr(substring,'|')=0 THEN NULL ELSE substr(substring, instr(substring,'|')+1) END FROM genres_movies WHERE substring IS NOT NULL ORDER BY id) SELECT genre AS Genre, count(id) AS Number_of_movies FROM genres_movies WHERE genre IS NOT NULL GROUP BY genre;
+SELECT Genre AS The_most_widespread_genre, MAX(Number_of_movies) AS Count_of_movies FROM the_most_widespread_genres;
+┌───────────────────────────┬─────────────────┐
+│ The_most_widespread_genre │ Count_of_movies │
+├───────────────────────────┼─────────────────┤
+│ Drama                     │ 4361            │
+└───────────────────────────┴─────────────────┘
+DROP VIEW IF EXISTS the_most_widespread_genres;
